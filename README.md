@@ -70,7 +70,7 @@ To deploy the solution, you use [AWS CloudFormation](https://aws.amazon.com/clou
 
 1. Click the **Launch on AWS** button to open the solution in the CloudFormation console.
 
-   [![Launch the Amazon CloudFront secure static website with CloudFormation](./docs/images/deploy-to-aws.png)](https://console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/new?stackName=amazon-cloudfront-secure-static-site-templates-main&templateURL=https://s3.amazonaws.com/solution-builders-us-east-1/amazon-cloudfront-secure-static-site/latest/main.yaml)
+   [![Launch the Amazon CloudFront secure static website with CloudFormation](./docs/images/deploy-to-aws.png)](https://console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/new?stackName=amazon-cloudfront-secure-static-site-templates-main&templateURL=https://secure-static-site-templates.s3.amazonaws.com/main.yaml)
 
 2. If necessary, sign in with your AWS account credentials.
 3. You should see a **Create stack** page, with pre-populated fields that specify the CloudFormation template. Choose the **Next** button at the bottom of the page.

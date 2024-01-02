@@ -59,7 +59,7 @@ Resources:
   CustomResourceStack:
     Type: AWS::CloudFormation::Stack
     Properties:
-      TemplateURL: ./custom-resource.yaml
+      TemplateURL: https://secure-static-site-templates.s3.amazonaws.com/custom-resource.yaml
       Tags:
         - Key: Solution
           Value: ACFS3
@@ -67,7 +67,7 @@ Resources:
   AcmCertificateStack:
     Type: AWS::CloudFormation::Stack
     Properties:
-      TemplateURL: ./acm-certificate.yaml
+      TemplateURL: https://secure-static-site-templates.s3.amazonaws.com/acm-certificate.yaml
       Parameters:
         SubDomain: !Ref SubDomain
         ApiDomain: !Ref ApiDomain
@@ -81,7 +81,7 @@ Resources:
   CloudFrontStack:
     Type: AWS::CloudFormation::Stack
     Properties:
-      TemplateURL: ./cloudfront-site.yaml
+      TemplateURL: https://secure-static-site-templates.s3.amazonaws.com/cloudfront-site.yaml
       Parameters:
         CertificateArn: !GetAtt AcmCertificateStack.Outputs.CertificateArn
         DomainName: !Ref DomainName
