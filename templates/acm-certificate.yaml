@@ -6,6 +6,8 @@ Parameters:
     Type: String
   SubDomain:
     Type: String
+  ApiDomain:
+    Type: String
   CreateApex:
     Type: String
   HostedZoneId:
@@ -15,6 +17,10 @@ Conditions:
   CreateApexConfig: !Equals
     - !Ref CreateApex
     - 'yes'
+  HasApiDomain: !Not
+    - !Equals
+      - !Ref ApiDomain
+      - ''
 
 Resources:
   Certificate:
@@ -24,8 +30,12 @@ Resources:
       SubjectAlternativeNames:
         Fn::If:
           - CreateApexConfig
-          - - Ref: DomainName
-          - Ref: AWS::NoValue
+          - !Ref DomainName
+          - !Ref AWS::NoValue
+        Fn::If:
+          - HasApiDomain
+          - !Ref ApiDomain
+          - !Ref AWS::NoValue
       DomainValidationOptions:
         - DomainName: !Sub '${SubDomain}.${DomainName}'
           HostedZoneId: !Ref HostedZoneId
@@ -33,7 +43,7 @@ Resources:
             - CreateApexConfig
             - DomainName: !Ref DomainName
               HostedZoneId: !Ref HostedZoneId
-            - Ref: AWS::NoValue
+            - !Ref AWS::NoValue
       ValidationMethod: DNS
 
 Outputs:

@@ -1,7 +1,7 @@
 AWSTemplateFormatVersion: 2010-09-09
 Description: |
   ACFS3 - S3 Static site with CF and ACM
-  https://github.com/aws-samples/amazon-cloudfront-secure-static-site
+  https://github.com/runninggator/amazon-cloudfront-secure-static-site
   (uksb-1qnk6ni7b) (version:v0.5)
 
 Metadata:
@@ -35,6 +35,14 @@ Parameters:
     Type: String
     Default: www
     AllowedPattern: ^[^.]*$
+  ApiDomain:
+    Description: >
+      The sub domain for an API. This will be added as an alternative name to the cert and
+      may be referenced by other resources. Note: this does not create any resources for the API.
+      Leave empty to ignore - e.g. api
+    Type: String
+    Default: ''
+    AllowedPattern: ^[^.]*$
   DomainName:
     Description: The part of a website address after your SubDomain - e.g. example.com
     Type: String
@@ -62,6 +70,7 @@ Resources:
       TemplateURL: ./acm-certificate.yaml
       Parameters:
         SubDomain: !Ref SubDomain
+        ApiDomain: !Ref ApiDomain
         DomainName: !Ref DomainName
         CreateApex: !Ref CreateApex
         HostedZoneId: !Ref HostedZoneId
